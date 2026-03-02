@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TetherX - Modern Healthcare</title>
+    <title>TetherX Health - Secure Patient Portal</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,8 +17,8 @@
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
         </div>
-        <h2>TetherX</h2>
-        <p>Securing connection...</p>
+        <h2>TetherX <span>Health</span></h2>
+        <p class="secure-text"><i class="fa-solid fa-lock"></i> Establishing End-to-End Encrypted Tunnel...</p>
     </div>
 
     <!-- Notification Toast -->
@@ -30,7 +30,8 @@
             <div class="logo">
                 <i class="fa-solid fa-notes-medical"></i> TetherX <span>Health</span>
             </div>
-            <div id="user-controls" class="hidden slide-in-right">
+            <div id="user-controls" class="hidden slide-in-right flex-center">
+                <div class="trust-badge mr-2"><i class="fa-solid fa-shield-halved"></i> HIPAA Compliant</div>
                 <span id="current-user-display" class="user-badge"></span>
                 <button id="logout-btn" class="btn btn-text">Logout</button>
             </div>
@@ -41,15 +42,20 @@
             <div class="login-wrapper">
                 <div class="login-left">
                     <h1>Seamless Care,<br>Intelligent Routing.</h1>
-                    <p>Connect with the right specialist instantly. Our AI-driven platform ensures your query reaches
-                        the right doctor, securely and immediately.</p>
+                    <p>Connect with the right specialist instantly. Our AI-driven platform ensures your health data
+                        reaches the right doctor, securely and immediately.</p>
+                    <div class="trust-indicators mt-2">
+                        <span><i class="fa-solid fa-lock"></i> 256-bit Encryption</span>
+                        <span><i class="fa-solid fa-user-doctor"></i> Verified Specialists</span>
+                        <span><i class="fa-solid fa-bolt"></i> Instant Routing</span>
+                    </div>
                 </div>
 
                 <div class="login-right">
                     <div class="login-card subtle-shadow">
                         <div class="login-tabs">
-                            <button class="tab-btn active" data-tab="patient-login-form">Patient</button>
-                            <button class="tab-btn" data-tab="doctor-login-form">Doctor</button>
+                            <button class="tab-btn active" data-tab="patient-login-form">Patient Portal</button>
+                            <button class="tab-btn" data-tab="doctor-login-form">Doctor Portal</button>
                         </div>
 
                         <!-- Patient Login Form -->
@@ -64,24 +70,28 @@
                                 <input type="password" id="p-login-pass" class="form-control" value="password123"
                                     required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-full pulse-hover">Login as Patient</button>
+                            <button type="submit" class="btn btn-primary btn-full pulse-hover mt-1"><i
+                                    class="fa-solid fa-arrow-right-to-bracket"></i> Login Securely</button>
                         </form>
 
                         <!-- Doctor Login Form -->
                         <form id="doctor-login-form" class="login-form hidden-form">
                             <div class="form-group">
-                                <label>Doctor ID / Email</label>
+                                <label>Provider ID</label>
                                 <select id="d-login-email" class="form-control">
                                     <option value="dr_smith">Dr. Smith - Cardiology</option>
-                                    <option value="dr_jones">Dr. Jones - General</option>
+                                    <option value="dr_jones">Dr. Jones - General Medicine</option>
+                                    <option value="dr_chen">Dr. Chen - Orthopedics</option>
+                                    <option value="dr_patel">Dr. Patel - Dermatology</option>
+                                    <option value="dr_williams">Dr. Williams - Pediatrics</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
+                                <label>Secure PIN</label>
                                 <input type="password" id="d-login-pass" class="form-control" value="doc123" required>
                             </div>
-                            <button type="submit" class="btn btn-secondary btn-full pulse-hover">Login as
-                                Doctor</button>
+                            <button type="submit" class="btn btn-secondary btn-full pulse-hover mt-1"><i
+                                    class="fa-solid fa-user-doctor"></i> Access Provider Dashboard</button>
                         </form>
                     </div>
                 </div>
@@ -93,36 +103,40 @@
             <div class="dashboard-grid">
 
                 <!-- New Request Form -->
-                <div class="panel subtle-shadow fade-in-up" style="animation-delay: 0.1s;">
+                <div class="panel subtle-shadow fade-in-up flex-col" style="animation-delay: 0.1s;">
                     <div class="panel-header">
-                        <h3>Tell us how you're feeling</h3>
+                        <h3><i class="fa-solid fa-stethoscope text-primary"></i> Describe Your Symptoms</h3>
+                        <p class="text-sm text-muted">Your information is encrypted and routed to the best available
+                            specialist.</p>
                     </div>
-                    <form id="patient-request-form">
+                    <form id="patient-request-form" class="flex-grow flex-col">
                         <div class="form-group">
-                            <label>Primary Symptom or Query</label>
+                            <label>Primary Symptom</label>
                             <input type="text" id="p-type" class="form-control"
-                                placeholder="e.g. Chest pain, skin rash, follow-up..." required>
+                                placeholder="e.g. Sharp chest pain, severe skin rash..." required>
                         </div>
                         <div class="form-group">
                             <label>Severity Level</label>
                             <div class="radio-group">
                                 <label class="radio-btn"><input type="radio" name="priority" value="Low" checked>
-                                    Low</label>
-                                <label class="radio-btn"><input type="radio" name="priority" value="Medium"> Med</label>
+                                    Mild</label>
+                                <label class="radio-btn"><input type="radio" name="priority" value="Medium">
+                                    Moderate</label>
                                 <label class="radio-btn"><input type="radio" name="priority" value="High"> High</label>
                                 <label class="radio-btn emergency"><input type="radio" name="priority"
                                         value="Emergency"> ER</label>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group flex-grow">
                             <label>Detailed Description</label>
-                            <textarea id="p-desc" class="form-control" rows="4"
-                                placeholder="Please provide more details..." required></textarea>
+                            <textarea id="p-desc" class="form-control h-full" rows="4"
+                                placeholder="How long have you felt this way? Any other details?" required></textarea>
                         </div>
 
                         <!-- Media Upload Simulation -->
-                        <div class="form-group mt-2">
-                            <label>Attach Media (End-to-End Encrypted)</label>
+                        <div class="form-group mb-0">
+                            <label>Secure Attachments <span class="badge-lock"><i class="fa-solid fa-lock"></i>
+                                    E2EE</span></label>
                             <div class="upload-buttons">
                                 <button type="button" class="btn btn-upload fade-bounce" data-type="image"><i
                                         class="fa-solid fa-image"></i> Photo</button>
@@ -142,26 +156,28 @@
                         <!-- Encryption Overlay -->
                         <div id="encryption-overlay" class="encryption-status hidden">
                             <div class="lock-container"><i class="fa-solid fa-lock" id="lock-icon"></i></div>
-                            <div class="enc-text">Encrypting payload via AES-256...</div>
+                            <div class="enc-text">Securing payload via AES-256...</div>
                             <div class="progress-bar-container">
                                 <div class="progress-bar"></div>
                             </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-full mt-2" id="submit-req-btn">
-                            Submit Securely
+                            <i class="fa-solid fa-paper-plane"></i> Submit Securely
                         </button>
                     </form>
                 </div>
 
                 <!-- Patient Request History -->
-                <div class="panel subtle-shadow fade-in-up" style="animation-delay: 0.2s;">
+                <div class="panel subtle-shadow fade-in-up flex-col" style="animation-delay: 0.2s;">
                     <div class="panel-header flex-between">
-                        <h3>My Healthcare Journey</h3>
+                        <div>
+                            <h3><i class="fa-solid fa-clipboard-list text-primary"></i> My Active Queries</h3>
+                        </div>
                         <button id="refresh-patient-btn" class="btn btn-icon-small"><i
                                 class="fa-solid fa-rotate-right"></i></button>
                     </div>
-                    <div id="patient-queries-list" class="queries-list">
+                    <div id="patient-queries-list" class="queries-list flex-grow">
                         <!-- Populated by JS -->
                     </div>
                 </div>
@@ -182,14 +198,14 @@
                 <div class="stats-mini">
                     <div class="stat-box pulse-bg">
                         <span class="stat-num" id="doc-total-req">0</span>
-                        <span class="stat-label">Action Required</span>
+                        <span class="stat-label">Pending Reviews</span>
                     </div>
                 </div>
             </div>
 
             <div class="panel subtle-shadow fade-in-up" style="animation-delay: 0.1s;">
-                <div class="panel-header flex-between">
-                    <h3>Patient Queue</h3>
+                <div class="panel-header flex-between mb-2">
+                    <h3><i class="fa-solid fa-inbox text-primary"></i> Secure Patient Queue</h3>
                     <button id="refresh-doc-btn" class="btn btn-outline"><i class="fa-solid fa-arrows-rotate"></i> Sync
                         Data</button>
                 </div>
@@ -213,6 +229,12 @@
             </div>
             <h2 id="modal-title" class="mb-1">Query Details</h2>
             <div id="modal-body" class="modal-body-scroll"></div>
+
+            <!-- Message / OP Booking Section -->
+            <div id="interaction-zone" class="interaction-zone mt-2 hidden">
+                <!-- Dynamically populated based on user type and status -->
+            </div>
+
             <div id="modal-actions" class="modal-footer mt-2"></div>
         </div>
     </div>
