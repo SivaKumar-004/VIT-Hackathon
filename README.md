@@ -8,6 +8,24 @@ Bringing intelligence to healthcare workflows.
 
 MedFlow is a smart hospital workflow automation and OP booking intelligence platform designed to streamline inter-department communication, reduce delays, and optimize patient flow.
 
+---
+
+## 💻 Frontend & Live Demo (Zero Setup!)
+
+We have engineered a **blazing-fast, serverless frontend** that runs entirely in your browser using local storage for instant demo validation. No databases, no backend required to test the core logic!
+
+### 📥 How to Run 
+1. **Double-click `index.html`** or start a Live Server.
+2. The entire application provisions itself instantly. 
+3. **Toggle** between the secure *Patient Portal* and the *Doctor Dashboard*.
+
+### ✨ Frontend Highlights
+- **Premium Aesthetics:** Calming emerald-green clinical color palette designed to exude trust and security (`#047857`). 
+- **Simulated E2E Encryption:** Beautiful AES-256 payload simulation animations when patients submit symptoms with attachments.
+- **Instant Data Sync:** Uses browser `localStorage` as an edge-database for zero-latency testing during your hackathon pitch.
+- **Glassmorphism UI:** Soft shadows, clinical typography (Outfit), and micro-interactions (pulse, slide-up, modals) rivaling enterprise systems like Zocdoc.
+
+---
 Hospitals often struggle with:
 
 Lost internal requests
@@ -90,27 +108,24 @@ This positions it as a scalable B2B HealthTech SaaS platform rather than just a 
 
 🏗 Tech Stack (Current Prototype)
 
-Backend: FastAPI / Flask (Python)
+**Frontend (Serverless Edge architecture):**
+- **HTML5 & CSS3:** Vanilla implementations for maximum performance and 0 dependencies.
+- **Vanilla JavaScript (ES6+):** Pure DOM manipulation, real-time polling simulation, and state management.
+- **In-Browser Database:** Leveraging HTML5 `localStorage` as a zero-latency NoSQL store.
+- **Google Sheets Integration:** Optional Apps script (`google_script.js`) ready to ping Google Sheets as a permanent webhook database.
 
-REST API Architecture
+**Backend (Optional validation server):**
+- FastAPI / REST API Architecture
+- Python 3
+- Rule-based routing engine
+- SLA detection logic
 
-In-memory or lightweight storage
+📦 API Endpoints (Fallback Prototype)
 
-Rule-based routing engine
-
-SLA detection logic
-
-(Scalable to microservices and database architecture in future versions.)
-
-📦 API Endpoints (Prototype)
-
-POST /create-request
-
-GET /requests
-
-PATCH /update-status/{id}
-
-GET /stats
+- `POST /create-request`
+- `GET /requests`
+- `PATCH /update-status/{id}`
+- `GET /stats`
 
 🧩 Vision
 
