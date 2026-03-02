@@ -32,17 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Create Local DB if not exists
 function initLocalDB() {
-    if (!localStorage.getItem('tetherx_db')) {
-        localStorage.setItem('tetherx_db', JSON.stringify([]));
+    if (!localStorage.getItem('medflow_db')) {
+        localStorage.setItem('medflow_db', JSON.stringify([]));
     }
 }
 
 // --- LocalStorage Engine ---
 function getDB() {
-    return JSON.parse(localStorage.getItem('tetherx_db') || '[]');
+    return JSON.parse(localStorage.getItem('medflow_db') || '[]');
 }
 function saveDB(data) {
-    localStorage.setItem('tetherx_db', JSON.stringify(data));
+    localStorage.setItem('medflow_db', JSON.stringify(data));
     syncToGoogleSheet(data);
 }
 

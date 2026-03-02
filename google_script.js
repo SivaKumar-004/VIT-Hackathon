@@ -1,5 +1,5 @@
 /**
- * TETHERX - GOOGLE SHEETS BACKEND (OPTIONAL)
+ * MEDFLOW - GOOGLE SHEETS BACKEND (OPTIONAL)
  * 
  * You asked to save data to a Google Sheet. Since pure frontend HTML cannot write to a Google Sheet 
  * without an API Key or Apps Script proxy, I have created this script for you.

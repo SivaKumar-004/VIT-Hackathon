@@ -7,7 +7,7 @@ import uuid
 
 app = FastAPI(
     title="Smart Patient Request Routing", 
-    description="TetherX Hackathon Backend - SLA Tracking & Routing System", 
+    description="MedFlow Hackathon Backend - SLA Tracking & Routing System", 
     version="2.0.0"
 )
 
