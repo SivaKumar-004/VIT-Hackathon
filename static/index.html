@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TetherX - Smart Patient Routing</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> TetherX <span>Healthcare</span>
+            </div>
+            <div id="user-controls" class="hidden">
+                <span id="current-user-display"></span>
+                <button id="logout-btn" class="btn btn-outline">Logout</button>
+            </div>
+        </header>
+
+        <!-- Login View -->
+        <main id="view-login" class="view active">
+            <div class="login-card glass-panel">
+                <h2>Welcome to TetherX Portal</h2>
+                <p>Select your portal access level</p>
+                
+                <div class="login-options">
+                    <button id="login-patient-btn" class="btn btn-primary btn-large">
+                        <i class="fa-solid fa-user-injured"></i> Patient Portal
+                    </button>
+                    
+                    <div class="divider"><span>OR</span></div>
+                    
+                    <div class="form-group doctor-login-group">
+                        <label for="doctor-select">Doctor Login</label>
+                        <select id="doctor-select" class="form-control">
+                            <option value="">Select Doctor Profile...</option>
+                            <!-- Populated by JS -->
+                        </select>
+                        <button id="login-doctor-btn" class="btn btn-secondary btn-large" style="margin-top: 10px; width: 100%;">
+                            <i class="fa-solid fa-user-doctor"></i> Doctor Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Patient View -->
+        <main id="view-patient" class="view hidden">
+            <div class="dashboard-grid">
+                
+                <!-- New Request Form -->
+                <div class="panel glass-panel">
+                    <h3><i class="fa-solid fa-paper-plane"></i> Submit New Query</h3>
+                    <form id="patient-request-form">
+                        <div class="form-group">
+                            <label>Patient Name (Auto-filled for demo)</label>
+                            <input type="text" id="p-name" class="form-control" value="Demo Patient" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Query Type / Symptoms</label>
+                            <input type="text" id="p-type" class="form-control" placeholder="e.g. Chest Pain, Broken Arm, Headache" required>
+                            <small>Our AI rules engine will automatically route this to the right specialist.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="p-priority" class="form-control">
+                                <option value="Low">Low (Routine)</option>
+                                <option value="Medium">Medium (Concerning)</option>
+                                <option value="High">High (Urgent)</option>
+                                <option value="Emergency">Emergency (Immediate)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Detailed Description</label>
+                            <textarea id="p-desc" class="form-control" rows="3" placeholder="Describe your issue detailedly..." required></textarea>
+                        </div>
+                        
+                        <!-- Media Upload Simulation -->
+                        <div class="form-group upload-group">
+                            <label>Secure Attachments (E2E Encrypted)</label>
+                            <div class="upload-buttons">
+                                <button type="button" class="btn btn-icon" data-type="image"><i class="fa-solid fa-image"></i> Image</button>
+                                <button type="button" class="btn btn-icon" data-type="audio"><i class="fa-solid fa-microphone"></i> Audio</button>
+                                <button type="button" class="btn btn-icon" data-type="video"><i class="fa-solid fa-video"></i> Video</button>
+                            </div>
+                            <div id="attached-media" class="hidden">
+                                <span class="badge"><i class="fa-solid fa-paperclip"></i> <span id="media-label">File Attached</span> <i class="fa-solid fa-xmark remove-media"></i></span>
+                            </div>
+                        </div>
+
+                        <!-- Encryption Overlay (Simulated) -->
+                        <div id="encryption-overlay" class="encryption-status hidden">
+                            <i class="fa-solid fa-lock fa-bounce"></i>
+                            <span>Encrypting payload (AES-256)...</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full mt-2">
+                            <i class="fa-solid fa-shield-halved"></i> Securely Submit Query
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Patient Request History -->
+                <div class="panel glass-panel">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> My Queries</h3>
+                    <button id="refresh-patient-btn" class="btn btn-outline btn-sm mb-2"><i class="fa-solid fa-rotate"></i> Refresh</button>
+                    <div id="patient-queries-list" class="queries-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+
+        <!-- Doctor View -->
+        <main id="view-doctor" class="view hidden">
+            <div class="dashboard-header glass-panel mb-2">
+                <div>
+                    <h2 id="doc-greeting">Dr. Dashboard</h2>
+                    <p id="doc-specialty" class="badge badge-specialty">Specialty</p>
+                </div>
+                <div class="stats-mini">
+                    <div class="stat-box">
+                        <span class="stat-num" id="doc-total-req">0</span>
+                        <span class="stat-label">My Queue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel glass-panel">
+                <div class="panel-header">
+                    <h3><i class="fa-solid fa-inbox"></i> Incoming Encrypted Queries</h3>
+                    <button id="refresh-doc-btn" class="btn btn-outline btn-sm"><i class="fa-solid fa-rotate"></i> Check Queue</button>
+                </div>
+                
+                <!-- Queue List -->
+                <div id="doctor-queue-list" class="queue-list grid-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Details Modal (Used by both Patient and Doctor) -->
+    <div id="details-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">Query Details</h3>
+            <div id="modal-body"></div>
+            <div id="modal-actions" class="mt-2"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
