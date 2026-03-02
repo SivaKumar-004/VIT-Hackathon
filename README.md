@@ -1,42 +1,118 @@
-# 🏥 Smart Patient Request Routing & SLA Tracking System
+🏥 MedFlow – Smart Hospital Workflow & OP Intelligence System
 
-## TetherX Hackathon Submission
+Automating hospital operations.
+Eliminating delays.
+Bringing intelligence to healthcare workflows.
 
-This is a rule-based workflow automation backend that routes patient queries across hospital departments, tracks status changes, and intelligently escalates delayed requests (SLA tracking).
+🚀 Overview
 
-### 🚀 Getting Started (Under 1 Minute)
+MedFlow is a smart hospital workflow automation and OP booking intelligence platform designed to streamline inter-department communication, reduce delays, and optimize patient flow.
 
-1. **Install dependencies:**
-   ```bash
-   pip install fastapi uvicorn pydantic
-   ```
+Hospitals often struggle with:
 
-2. **Run the server:**
-   ```bash
-   uvicorn main:app --reload
-   ```
+Lost internal requests
 
-3. **Open the Auto-Generated UI (Swagger)**
-   Go to: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-   
-   *You can test all endpoints directly from this browser UI—no Postman required!*
+Manual routing between departments
 
-### 📋 Core Features Demo Script
+SLA breaches
 
-When showing this to the judges, follow this flow:
+Overloaded OP systems
 
-1. **Show `GET /stats` or `GET /requests`** 
-   - Point out that **REQ-1001** automatically escalated. Why? Because we simulated a 15-minute delay on an "Emergency" request, breaching the 10-minute SLA!
-2. **Hit `POST /create-request`**
-   - Submit a test report with `request_type`: "Blood Test", `priority`: "Medium". 
-   - Notice how it automatically routes to the **"Lab"** department.
-3. **Hit `PATCH /update-status/{id}`**
-   - Copy the ID of the request you just made and update its status to "In Progress".
-4. **Hit `GET /requests` again**
-   - Show the `timeline` array. Explain: *"Our timeline logger provides complete accountability. You can see exactly when it was created, routed, and updated."*
+Poor visibility into operational performance
 
-### 🧠 Architecture
-- **Framework:** FastAPI
-- **Database:** In-Memory App State (Optimized for speed/demo)
-- **Routing Engine:** Keyword/Rule-based inference
-- **SLA Engine:** Dynamic evaluation on read/update hooks.
+MedFlow solves this with automation, tracking, and intelligent insights.
+
+🎯 Core Features
+🔁 Automated Request Routing
+
+Patient requests are automatically assigned to the correct department based on predefined rules.
+
+Eliminates manual forwarding and errors.
+
+📊 Workflow Tracking
+
+Real-time status updates
+
+Department-level visibility
+
+Complete request timeline logging
+
+⏱ SLA Monitoring & Escalation
+
+Detects delayed cases
+
+Auto-flags overdue requests
+
+Improves accountability
+
+🧾 OP Booking Integration
+
+Structured appointment handling
+
+Department-based scheduling
+
+Reduced waiting time chaos
+
+📈 Operational Analytics
+
+Total, pending, completed, and escalated requests
+
+Department load monitoring
+
+Performance visibility
+
+💰 Revenue Model
+
+Revenue is generated through hospital SaaS subscriptions (tier-based), per-OP booking platform fees, premium AI modules (triage, SLA analytics, load prediction), commission on diagnostics and pharmacy integrations, insurance automation fees, corporate health management contracts, and optional paid patient-side services.
+
+🔮 Future Expansion
+
+Future upgrades include AI clinical assistance, predictive patient flow modeling, no-show forecasting, smart bed allocation, telemedicine integration, multi-hospital analytics dashboards, digital health wallets, insurance automation, and region-level public health intelligence monitoring.
+
+🧠 Why This Project Matters
+
+MedFlow is not just an appointment system.
+It is a hospital operational intelligence layer.
+
+It focuses on:
+
+Accountability
+
+Automation
+
+Real-time insights
+
+Scalable architecture
+
+Practical implementation
+
+This positions it as a scalable B2B HealthTech SaaS platform rather than just a booking tool.
+
+🏗 Tech Stack (Current Prototype)
+
+Backend: FastAPI / Flask (Python)
+
+REST API Architecture
+
+In-memory or lightweight storage
+
+Rule-based routing engine
+
+SLA detection logic
+
+(Scalable to microservices and database architecture in future versions.)
+
+📦 API Endpoints (Prototype)
+
+POST /create-request
+
+GET /requests
+
+PATCH /update-status/{id}
+
+GET /stats
+
+🧩 Vision
+
+To become the operational backbone for modern hospitals —
+bridging patients, doctors, and departments through intelligent automation.
